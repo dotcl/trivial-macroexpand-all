@@ -30,6 +30,10 @@
   (declare (ignore env))
   (values (ccl:macroexpand-all form) t nil))
 
+#+dotcl
+(defun macroexpand-all (form &optional env)
+  (values (dotcl-cltl2:macroexpand-all form env) t t))
+
 #+ecl
 (defun macroexpand-all (form &optional env)
   (values (walker:macroexpand-all form env) t t))
@@ -53,7 +57,7 @@
   (declare (ignore env))
   (values (macroexpand form) t nil))
 
-#-(or abcl allegro ccl clisp cmucl corman ecl lispworks mkcl sbcl scl)
+#-(or abcl allegro ccl clisp cmucl corman dotcl ecl lispworks mkcl sbcl scl)
 (defun macroexpand-all (form &optional env)
   (declare (ignore env))
   (values form nil nil))
